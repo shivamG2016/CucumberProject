@@ -1,5 +1,6 @@
 package pageObjects;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,18 +11,6 @@ public class LoginPage {
     WebDriver localDriver;
 
     // here we have to create a constructor
-    @FindBy(xpath = "//a[contains(@href, 'https://www.amazon.in/ap/signin?openid.pape.max') and @class='nav-a nav-a-2   nav-progressive-attribute']")
-    WebElement mousehoverToSignIN;
-
-    // Here we have to define the actions methods of it
-    @FindBy(xpath = "//input[@type='email']")
-    WebElement emailFiled;
-    @FindBy(xpath = "//input[@id='continue']")
-    WebElement continueBtn;
-    @FindBy(xpath = "//input[@type='password']")
-    WebElement passwordField;
-    @FindBy(xpath = "//input[@id='signInSubmit']")
-    WebElement signInBtn;
 
     public LoginPage(WebDriver remoteDriver) {
 
@@ -31,37 +20,32 @@ public class LoginPage {
         PageFactory.initElements(remoteDriver, this);
 
     }
+
+    @FindBy(xpath = "//input[@id='loginForm:accountId']")
+    WebElement userNameFiled;
+    @FindBy(xpath = "//input[@id='loginForm:password']")
+    WebElement passwordFiled;
+    @FindBy(xpath = "//input[@id='loginForm:loginButton']")
+    WebElement loginBtn;
+
+
     // Here we have to create Action methods
 
-    public void MouseHoverandClick() {
-        mousehoverToSignIN.click();
+    public void enterUserName(String username) {
+
+        userNameFiled.sendKeys(username);
+
+    }
+    public void enterPassword(String password) {
+
+        passwordFiled.sendKeys(password);
 
     }
 
-// Click on Sign in Button
+    public void clickONLoginBtn() {
 
-    public void enterEmailIDforSignIn(String emailID) {
-
-        emailFiled.sendKeys(emailID);
+        loginBtn.click();
 
     }
 
-
-    public void ClickOnContinueBtn(String emailID) {
-
-        continueBtn.click();
-
-    }
-
-    public void enterPasswordforSignIn(String Password) {
-
-        passwordField.sendKeys(Password);
-
-    }
-
-    public void clickOnSignInBtn(String Password) {
-
-        signInBtn.click();
-
-    }
 }

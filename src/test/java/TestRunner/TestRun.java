@@ -1,8 +1,9 @@
 package TestRunner;
-import  cucumber.api.junit.Cucumber;
+
 import org.junit.runner.RunWith;
 import  cucumber.api.CucumberOptions;
-@RunWith(Cucumber.class)
+import cucumber.api.junit.Cucumber;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
         features = "src/test/resources/features/login.feature",
         glue ="stepDefinitions",
@@ -10,7 +11,7 @@ import  cucumber.api.CucumberOptions;
         plugin = {"pretty",
         "html:test-output"}
 )
-public class TestRun {
+public class TestRun extends AbstractTestNGCucumberTests{
 
 
 

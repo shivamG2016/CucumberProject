@@ -1,10 +1,13 @@
 package stepDefinitions;
 
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import pageObjects.LoginPage;
 
 public class stepDef {
@@ -12,43 +15,43 @@ public class stepDef {
     WebDriver Driver;
     LoginPage lp;
 
-    @Given("^user open Amazon Home page$")
-    public void user_open_amazon_home_page()  {
+    @Given("^user should open T-Mobile login page$")
+    public void user_should_open_tmobile_login_page()  {
 
-        System.out.println( " I am in first step");
+        System.setProperty("webdriver.chrome.driver", "C:\\Shivam0156\\SP25\\AmazonLatest2\\Drivers\\chromedriver.exe");
+        Driver = new ChromeDriver();
+        Driver.get("https://sailpointiiqqlab02.px-npe1103.pks.t-mobile.com/identityiq/login.jsf?prompt=true\n");
+        Driver.manage().window().maximize();
 
-        System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
-        Driver =new ChromeDriver();
-        Driver.get("https://www.amazon.in/");
 
     }
 
-    @When("^user mouseHover and click on sign in button$")
-    public void user_mousehover_and_click_on_sign_in_button()  {
+    @When("^User enter user name and password$")
+    public void user_enter_user_name_and_password()  {
 
-        System.out.println(".......... I am in second step...........");
         lp=new LoginPage(Driver);
-        lp.MouseHoverandClick();
+        lp.enterUserName("Akbar");
+        lp.enterPassword("derli");
 
     }
 
-    @And("^user input email \"([^\"]*)\"$")
-    public void user_input_email_something(String strArg1)  {
+    @Then("^user verify the home page$")
+    public void user_verify_the_home_page() {
+
+
+        // Apply assertion here to confirm successful login
+
+        Assert.assertEquals("a","a");
+
 
     }
 
-    @And("^user click on continue$")
-    public void user_click_on_continue()  {
+    @And("^user click on login button$")
+    public void user_click_on_login_button() throws InterruptedException {
+        lp.clickONLoginBtn();
 
+        Thread.sleep(5000);
+        Driver.quit();
     }
 
-    @And("^user enter passwords \"([^\"]*)\"$")
-    public void user_enter_passwords_something(String strArg1) {
-
-    }
-
-    @And("^user click on Sign in$")
-    public void user_click_on_sign_in()  {
-
-    }
 }
